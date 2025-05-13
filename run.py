@@ -84,7 +84,7 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate', type=float, default=0.0002, help='optimizer learning rate')
     parser.add_argument('--lr_adjust_epochs', type=int, default=10, help='data loader num workers')
     parser.add_argument('--num_workers', type=int, default=14, help='data loader num workers')
-    parser.add_argument('--itr', type=int, default=1, help='experiments times')
+    parser.add_argument('--itr', type=int, default=1, help='experiments runs')
     parser.add_argument('--train_epochs', type=int, default=200, help='train epochs')
     parser.add_argument('--batch_size', type=int, default=4, help='batch size of train input data')
     parser.add_argument('--patience', type=int, default=20, help='early stopping patience')
@@ -109,7 +109,6 @@ if __name__ == '__main__':
     args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
 
 
-    # for trochseed in range(100):
     if True:
         setting = (f'mt_{int(args.mutlitask)}_ts_start{args.ts_start}_ts_end{args.ts_end}'+
                    f'_{args.model}_torchseed{trochseed}'+
@@ -137,9 +136,7 @@ if __name__ == '__main__':
                         os.makedirs(dst)
                     copy(os.path.join(dir, f), os.path.join(dst, f))
 
-        'nbart_coastal_aerosol', 'nbart_blue',
-        'nbart_green', 'nbart_red', 'nbart_red_edge_1', 'nbart_red_edge_2',
-        'nbart_red_edge_3', 'nbart_nir_1', 'nbart_swir_2', 'nbart_swir_3', 'nbart_nir_2'
+       
         ts_bands = ['nbart_coastal_aerosol', 'nbart_blue',
                     'nbart_green', 'nbart_red', 'nbart_red_edge_1', 'nbart_red_edge_2',
                     'nbart_red_edge_3', 'nbart_nir_1', 'nbart_swir_2', 'nbart_swir_3', 'nbart_nir_2',
@@ -201,22 +198,22 @@ if __name__ == '__main__':
                         scores_temp = func_scores_df(cv, early_stopping)
                         scores = pd.concat([scores, scores_temp])
 
-                ## mean and std from cvs #############
-                def func_mean_std(temp, scores, describe):
+                ## mean and error from cvs #############
+                def func_mean_err(temp, scores, describe):
                     scores_temp = pd.DataFrame({'Model': [describe]})
                     for idx in temp.index:
                         scores_temp[idx] = temp.loc[idx]
                     scores = pd.concat([scores, scores_temp])
                     return scores
                 print(f'Mean: {scores.iloc[:,1:].mean()}')
-                print(f'Std: {scores.iloc[:, 1:].std()}')
+                print(f'sem: {scores.iloc[:, 1:].sem()}')
 
                 log_file = os.path.join(args.save_path, 'log.log')
                 with open(log_file, 'a') as f:
                     print(f'Mean: {scores.iloc[:,1:].mean()}', file=f)
-                    print(f'Std: {scores.iloc[:, 1:].std()}', file=f)
-                scores = func_mean_std(scores.iloc[:,1:].mean(), scores,'mean')
-                scores = func_mean_std(scores.iloc[:, 1:].std(), scores,'std')
+                    print(f'sem: {scores.iloc[:, 1:].sem()}', file=f)
+                scores = func_mean_err(scores.iloc[:,1:].mean(), scores,'mean')
+                scores = func_mean_err(scores.iloc[:, 1:].sem(), scores,'sem')
 
                 scores.to_csv(args.save_path+ '/' + 'scores.csv',index=False)
                 a=0
