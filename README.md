@@ -37,6 +37,6 @@ Functions to train the model
 
 Functions for different deep learning models' layer
 
-**/utils**
+**./utils**
 
 Functions like attentive fusion, evaluation metrics, etc. 
