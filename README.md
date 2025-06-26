@@ -18,22 +18,22 @@ Hyper parameters can be set in the argparse in the run.py
 ![Main results](./dataset/DLSresults.png)
 
 ## Scripts
-**--data_provider**
+**./data_provider**
 
 Preprocess the raw data including time series and static features to be ready for the model input
 
-**/dataset**
+**./dataset**
 
 Raw data
 - All_S2_bands. Sentinel2 records for the training samples'locations
 - climate. Climate data
 - terrain. Static terrain features
 
-**/exp**
+**./exp**
 
 Functions to train the model
 
-**/layers and models**
+**./layers and ./models**
 
 Functions for different deep learning models' layer
 
