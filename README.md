@@ -1,4 +1,4 @@
-# DLSoc
+# DNNS
  Deep Learning- based SOC estimation framework (DLS). 
  ![DLS framework](./dataset/DLSframework.png)
  
