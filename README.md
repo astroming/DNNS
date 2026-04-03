@@ -4,9 +4,10 @@
  
  This framework leverages deep learning techniques including time-series encoders like LSTM, Transformer, mamber, and multitask learning mechanism to handle regional SOC variation. Details can be found in the paper (paper will be publically available soon).
 ## Requirements
-- Pytorch 
-- Mamba
+- Pytorch==2.8.0 
+- transformers==5.5.0
 - Cuda which can speed up the training process
+- More details can be found in requirements.txt
 ## Usage
 **Example Usage**
 
