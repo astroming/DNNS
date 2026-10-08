@@ -1,7 +1,10 @@
 # DNNS
 Deep Neural Network framework with multitask learning for large-scale SOC estimation. 
- ![DLS framework](./dataset/DLSframework.png)
- 
+
+ <p align="center">
+  <img src="./dataset/DLSframework.png" alt="alt text" width="600">
+</p>
+
 The framework employs a time-series encoder (e.g., CNN, RNN, Transformer, or SSM) to process remote sensing and climate time-series data, alongside a static learner implemented as a fully connected feedforward network to process terrain attributes. The learned representations from both modules are integrated via an attention-based fusion mechanism, which adaptively weights their relative contributions based on predictive relevance. The fused representation is then passed into a multitask learning module comprising shared layers (trained on all samples to capture common characteristics across all regions) and task-specific layers (trained on regional subsets to preserve distinctive local patterns). This architecture enables end-to-end training of DNNS to estimate SOC that are both globally informed and locally precise.).
 ## Requirements
 - Pytorch==2.8.0 
