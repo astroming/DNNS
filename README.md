@@ -16,7 +16,23 @@ The framework employs a time-series encoder (e.g., CNN, RNN, Transformer, or SSM
 Hyper parameters can be set in the argparse in the run.py
 
 ## Results
-![Main results](./dataset/DLSresults.png)
+<p align="center">
+  <img src="./dataset/fig_re.png" alt="alt text" width="600">
+</p>
+
+**Experimental evaluation**. **a**, Validation performance of the best DNNS, which is equipped with Transformer encoder and multitask learning). **b**, Comparison of DNNS(TF) with global and memory-based baseline models in terms of $R^2$ (higher is better) and MAE (lower is better). MBL variants use Geographic clustering (MG) or $k$-Nearest-Neighbor clustering (MN). **c**, Ablation study of the time-series encoder and the multitask learning module.
+
+<p align="center">
+  <img src="./dataset/fig_imp.png" alt="alt text" width="600">
+</p>
+
+**Feature importance analysis.** Feature importance based on the perturbation method, with scores averaged across the four DNNS variants.
+
+<p align="center">
+  <img src="./dataset/fig_heat.png" alt="alt text" width="600">
+</p>
+
+**Impacts of time-series duration on SOC estimation performance.** $R^2$ values for the four DNNS variants (CNN, LSTM, SSM, and Transformer) across all combinations of time-series start and end dates, where higher values indicate better performance.
 
 ## Scripts
 **./data_provider**
