@@ -93,6 +93,7 @@ if __name__ == '__main__':
     parser.add_argument('--loss', type=str, default='MAPE', help='loss function: MSE, MAPE, MASE, SMAPE, L1')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
     parser.add_argument('--evaluation', type=str, default='R2', help='MAE, MSE,RMSE,R2')
+    parser.add_argument('--use_lambda', action='store_true', help='use task weighting coefficient in multitask objective')
     parser.add_argument('--use_amp', action='store_true', help='use automatic mixed precision training', default=False)
 
     parser.add_argument('--cv_seed', type=int, default=42, help='cross validation seed')
