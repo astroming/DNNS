@@ -83,7 +83,9 @@ class Exp_Regression(Exp_Basic):
                 batch_y = batch_y.float().to(self.device)
 
                 outputs = self.model(batch_x, static_x, batch_task)
-                loss = criterion(outputs, batch_y)
+                loss = criterion(outputs, batch_y) 
+                # Here we do not use the weighting coefficient for each task 
+                # as three regions do not show imbalanced too much
                 train_loss.append(loss.item())
 
                 loss.backward()
